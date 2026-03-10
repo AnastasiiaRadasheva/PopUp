@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="PopUpEE.csproj">
+    <Deploy />
+  </Project>
+</Solution>
