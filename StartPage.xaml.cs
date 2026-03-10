@@ -7,7 +7,6 @@ public partial class StartPage : ContentPage
     VerticalStackLayout vst;
     ScrollView sv;
 
-    // Флаг чтобы код выполнялся только 1 раз
     static bool nameChecked = false;
 
     public List<ContentPage> Lehed = new List<ContentPage>()
@@ -62,7 +61,6 @@ public partial class StartPage : ContentPage
     {
         base.OnAppearing();
 
-        // Если уже проверяли имя — ничего не делаем
         if (nameChecked)
             return;
 
