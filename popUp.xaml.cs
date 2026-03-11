@@ -4,7 +4,7 @@ namespace PopUpEE;
 
 public partial class popUp : ContentPage
 {
-    string playerName;
+
 
     Dictionary<string, (string text, Dictionary<string, string> options)> scenes =
         new Dictionary<string, (string, Dictionary<string, string>)>()
@@ -293,29 +293,31 @@ public partial class popUp : ContentPage
         };
     }
 
-    private async void ForestButton_Clicked(object sender, EventArgs e)
+    string playerName = "";
+
+    private async void ForestButton_Clicked(object? sender, EventArgs e)
     {
         playerName = Preferences.Get("PlayerName", "Reisija");
 
-        await DisplayAlert("Tere", $"Edu sulle, {playerName}!", "Alusta");
+        await this.DisplayAlertAsync("Tere", $"Edu sulle, {playerName}!", "Alusta");
 
         await PlayScene("forest_start");
     }
 
-    private async void ZombieButton_Clicked(object sender, EventArgs e)
+    private async void ZombieButton_Clicked(object? sender, EventArgs e)
     {
         playerName = Preferences.Get("PlayerName", "Reisija");
 
-        await DisplayAlert("Tere", $"{playerName}, valmistu zombi-apokalüpsiseks!", "Alusta");
+        await this.DisplayAlertAsync("Tere", $"{playerName}, valmistu zombi-apokalüpsiseks!", "Alusta");
 
         await PlayScene("zombie_start");
     }
 
-    private async void SchoolButton_Clicked(object sender, EventArgs e)
+    private async void SchoolButton_Clicked(object? sender, EventArgs e)
     {
         playerName = Preferences.Get("PlayerName", "Reisija");
 
-        await DisplayAlert("Tere", $"{playerName}, sa oled mahajäetud koolis...", "Alusta");
+        await this.DisplayAlertAsync("Tere", $"{playerName}, sa oled mahajäetud koolis...", "Alusta");
 
         await PlayScene("school_start");
     }
@@ -326,11 +328,11 @@ public partial class popUp : ContentPage
 
         if (scene.options.Count == 0)
         {
-            await DisplayAlert("Lõpp", scene.text, "OK");
+            await DisplayAlertAsync("Lõpp", scene.text, "OK");
             return;
         }
 
-        string choice = await DisplayActionSheet(
+        string choice = await DisplayActionSheetAsync(
             scene.text,
             "Tühista",
             null,

@@ -66,11 +66,11 @@ public partial class StartPage : ContentPage
 
         nameChecked = true;
 
-        string playerName = Preferences.Get("PlayerName", null);
+        string? playerName = Preferences.Get("PlayerName", null);
 
         if (!string.IsNullOrEmpty(playerName))
         {
-            bool isUser = await DisplayAlert(
+            bool isUser = await DisplayAlertAsync(
                 "Tere!",
                 $"Kas see oled sina, {playerName}?",
                 "Jah",

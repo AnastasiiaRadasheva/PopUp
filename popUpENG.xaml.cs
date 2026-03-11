@@ -4,7 +4,7 @@ namespace PopUpEE;
 
 public partial class popUpENG : ContentPage
 {
-    string playerName;
+    string playerName = "";
 
     Dictionary<string, (string text, Dictionary<string, string> options)> scenes =
         new Dictionary<string, (string, Dictionary<string, string>)>()
@@ -292,32 +292,32 @@ public partial class popUpENG : ContentPage
             VerticalOptions = LayoutOptions.Center,
             Children = { forestButton, zombieButton, schoolButton }
         };
-      
+
     }
 
-    private async void ForestButton_Clicked(object sender, EventArgs e)
+    private async void ForestButton_Clicked(object? sender, EventArgs e)
     {
         playerName = Preferences.Get("PlayerName", "Путешественник");
 
-        await DisplayAlert("Привет", $"Удачи тебе, {playerName}!", "Начать");
+        await DisplayAlertAsync("Привет", $"Удачи тебе, {playerName}!", "Начать");
 
         await PlayScene("forest_start");
     }
 
-    private async void ZombieButton_Clicked(object sender, EventArgs e)
+    private async void ZombieButton_Clicked(object? sender, EventArgs e)
     {
         playerName = Preferences.Get("PlayerName", "Путешественник");
 
-        await DisplayAlert("Привет", $"{playerName}, приготовься к зомби-апокалипсису!", "Начать");
+        await DisplayAlertAsync("Привет", $"{playerName}, приготовься к зомби-апокалипсису!", "Начать");
 
         await PlayScene("zombie_start");
     }
 
-    private async void SchoolButton_Clicked(object sender, EventArgs e)
+    private async void SchoolButton_Clicked(object? sender, EventArgs e)
     {
         playerName = Preferences.Get("PlayerName", "Путешественник");
 
-        await DisplayAlert("Привет", $"{playerName}, ты оказался в заброшенной школе...", "Начать");
+        await DisplayAlertAsync("Привет", $"{playerName}, ты оказался в заброшенной школе...", "Начать");
 
         await PlayScene("school_start");
     }
@@ -328,11 +328,11 @@ public partial class popUpENG : ContentPage
 
         if (scene.options.Count == 0)
         {
-            await DisplayAlert("Конец", scene.text, "OK");
+            await DisplayAlertAsync("Конец", scene.text, "OK");
             return;
         }
 
-        string choice = await DisplayActionSheet(
+        string choice = await DisplayActionSheetAsync(
             scene.text,
             "Отмена",
             null,
