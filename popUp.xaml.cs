@@ -297,7 +297,7 @@ public partial class popUp : ContentPage
 
     private async void ForestButton_Clicked(object? sender, EventArgs e)
     {
-        playerName = Preferences.Get("PlayerName", "Reisija");
+        playerName = Preferences.Get("PlayerName", "");
 
         await this.DisplayAlertAsync("Tere", $"Edu sulle, {playerName}!", "Alusta");
 
@@ -306,7 +306,7 @@ public partial class popUp : ContentPage
 
     private async void ZombieButton_Clicked(object? sender, EventArgs e)
     {
-        playerName = Preferences.Get("PlayerName", "Reisija");
+        playerName = Preferences.Get("PlayerName", "");
 
         await this.DisplayAlertAsync("Tere", $"{playerName}, valmistu zombi-apokalüpsiseks!", "Alusta");
 
@@ -315,7 +315,7 @@ public partial class popUp : ContentPage
 
     private async void SchoolButton_Clicked(object? sender, EventArgs e)
     {
-        playerName = Preferences.Get("PlayerName", "Reisija");
+        playerName = Preferences.Get("PlayerName", "");
 
         await this.DisplayAlertAsync("Tere", $"{playerName}, sa oled mahajäetud koolis...", "Alusta");
 
