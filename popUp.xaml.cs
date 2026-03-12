@@ -241,7 +241,7 @@ public partial class popUp : ContentPage
             )
 
         };
-
+    Image backgroundImage;
     public popUp()
     {
         Button forestButton = new Button
@@ -284,12 +284,31 @@ public partial class popUp : ContentPage
         zombieButton.Clicked += ZombieButton_Clicked;
         schoolButton.Clicked += SchoolButton_Clicked;
 
-        Content = new VerticalStackLayout
+        backgroundImage = new Image
+        {
+            Source = "dotnet_bot.png",
+            Aspect = Aspect.AspectFill
+        };
+
+        Content = new Grid
+        {
+            Children =
+    {
+        backgroundImage,
+
+        new VerticalStackLayout
         {
             Padding = new Thickness(30),
             Spacing = 25,
             VerticalOptions = LayoutOptions.Center,
-            Children = { forestButton, zombieButton, schoolButton }
+            Children =
+            {
+                forestButton,
+                zombieButton,
+                schoolButton
+            }
+        }
+    }
         };
     }
 
@@ -297,27 +316,33 @@ public partial class popUp : ContentPage
 
     private async void ForestButton_Clicked(object? sender, EventArgs e)
     {
+        backgroundImage.Source = "forest_bg.png";
+
         playerName = Preferences.Get("PlayerName", "");
 
-        await this.DisplayAlertAsync("Tere", $"Edu sulle, {playerName}!", "Alusta");
+        await DisplayAlertAsync("Tere", $"Edu sulle, {playerName}!", "Alusta");
 
         await PlayScene("forest_start");
     }
 
     private async void ZombieButton_Clicked(object? sender, EventArgs e)
     {
+        backgroundImage.Source = "zombie_bg.png";
+
         playerName = Preferences.Get("PlayerName", "");
 
-        await this.DisplayAlertAsync("Tere", $"{playerName}, valmistu zombi-apokalüpsiseks!", "Alusta");
+        await DisplayAlertAsync("Tere", $"{playerName}, valmistu zombi-apokalüpsiseks!", "Alusta");
 
         await PlayScene("zombie_start");
     }
 
     private async void SchoolButton_Clicked(object? sender, EventArgs e)
     {
+        backgroundImage.Source = "school_bg.png";
+
         playerName = Preferences.Get("PlayerName", "");
 
-        await this.DisplayAlertAsync("Tere", $"{playerName}, sa oled mahajäetud koolis...", "Alusta");
+        await DisplayAlertAsync("Tere", $"{playerName}, sa oled mahajäetud koolis...", "Alusta");
 
         await PlayScene("school_start");
     }
